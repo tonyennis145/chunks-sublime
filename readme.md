@@ -8,13 +8,13 @@ cd ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/
 
 2. Clone this repository into it
 ```
-git clone https://github.com/tonyennis145/chunks-sublime.git
+git clone https://github.com/tonyennis145/chunks-sublime.git Chunks
 ```
 
 3. Set your authentication credentials in the Chunks.sublime-settings file
 ```
 cd Chunks
-open .`
+open .
 ```
 
 Right click Chunks.sublime-settings, edit with Sublime Text
