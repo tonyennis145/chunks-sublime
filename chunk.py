@@ -13,13 +13,18 @@ class ChunkCommand(sublime_plugin.TextCommand):
 		settings = sublime.load_settings("Chunks.sublime-settings")
 
 		# Get variables from settings
-		urls = settings.get("urls")
-		create_chunk_url = urls['create_chunk']
-		authentication_token = settings.get("authentication_token")
-		project_id = settings.get("project_id")
+		# urls = settings.get("chunks_urls")
 
-		default_snippet_template = settings.get("default_snippet_template")
-		snippet_templates = settings.get("snippet_templates")
+		api_version = sublime.active_window().active_view().settings().get('chunks_api_version', settings.get("chunks_api_version"))
+		urls = sublime.active_window().active_view().settings().get('chunks_urls', settings.get("chunks_urls"))
+
+		create_chunk_url = urls['api_root'] + "/" + api_version + "/chunks"
+
+		authentication_token = sublime.active_window().active_view().settings().get('chunks_authentication_token', settings.get("chunks_authentication_token"))
+		project_id = sublime.active_window().active_view().settings().get('chunks_project_id', settings.get("chunks_project_id"))
+
+		default_snippet_template = sublime.active_window().active_view().settings().get('chunks_default_snippet_template', settings.get("chunks_default_snippet_template"))
+		snippet_templates = sublime.active_window().active_view().settings().get('chunks_snippet_templates', settings.get("chunks_snippet_templates"))
 		snippet_template = snippet_templates[default_snippet_template]
 
 		# Get selected text
