@@ -1,7 +1,6 @@
 {
     "chunks_urls": {
-    	"api_root" : "http://www.chunksapp.com",
-    	"create_chunk" : "http://www.chunksapp.com/chunks"
+    	"api_root" : "https://www.chunksapp.com/api"
     },
     "chunks_default_snippet_template" : "rails_interpolated",
     "chunks_snippet_templates" : {

@@ -26,8 +26,7 @@ git clone https://github.com/tonyennis145/chunks-sublime.git Chunks
         ],
         "settings":
         {
-            "chunks_authentication_token": "",
-            "chunks_project_id": "",
+            "chunks_authentication_token": ""
         }
     }
     ```

@@ -21,7 +21,6 @@ class ChunkCommand(sublime_plugin.TextCommand):
 		create_chunk_url = urls['api_root'] + "/" + api_version + "/chunks"
 
 		authentication_token = sublime.active_window().active_view().settings().get('chunks_authentication_token', settings.get("chunks_authentication_token"))
-		project_id = sublime.active_window().active_view().settings().get('chunks_project_id', settings.get("chunks_project_id"))
 
 		default_snippet_template = sublime.active_window().active_view().settings().get('chunks_default_snippet_template', settings.get("chunks_default_snippet_template"))
 		snippet_templates = sublime.active_window().active_view().settings().get('chunks_snippet_templates', settings.get("chunks_snippet_templates"))
@@ -38,7 +37,6 @@ class ChunkCommand(sublime_plugin.TextCommand):
 
 			data = {
 			    "chunk" : {
-			        "project_id" : project_id,
 			        "content" : content
 			    },
 			    "authentication_token" : authentication_token
