@@ -51,17 +51,30 @@ class ChunkCommand(sublime_plugin.TextCommand):
 				headers={'Content-Type': 'application/json','User-Agent': 'Mozilla/5.0' }
 			)
 
-			response = urllib.request.urlopen(request)
-			response_as_string = response.read().decode('utf8')
-			response_as_json = json.loads(response_as_string)
+			try:
+				response = urllib.request.urlopen(request)
+				response_as_string = response.read().decode('utf8')
+				response_as_json = json.loads(response_as_string)
 
-			chunk_identifier = response_as_json['identifier']
-			chunk_content = response_as_json['content']
+				chunk_info = response_as_json["chunk"]
+				
+				chunk_identifier = chunk_info['identifier']
+				chunk_content = chunk_info['content']
 
-			shortened_original_content = chunk_content[:10] + (chunk_content[10:] and '..')
+				shortened_original_content = chunk_content[:10] + (chunk_content[10:] and '..')
 
-			replacement_text = snippet_template.replace("{identifier}", chunk_identifier)
-			replacement_text = replacement_text.replace("{label}", shortened_original_content)
+				replacement_text = snippet_template.replace("{identifier}", chunk_identifier)
+				replacement_text = replacement_text.replace("{label}", shortened_original_content)
 
-			# Make the replacement
-			self.view.replace(edit, selection, replacement_text )
+				# Make the replacement
+				self.view.replace(edit, selection, replacement_text )
+
+			except urllib.error.HTTPError as e:
+
+				response_as_string = e.read().decode('utf8')
+				response_as_json = json.loads(response_as_string)
+				message = response_as_json['message']
+
+				sublime.error_message(message)
+
+
